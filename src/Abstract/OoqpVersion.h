@@ -7,9 +7,9 @@
 
 #define OOQPVERSIONMAJOR 0
 #define OOQPVERSIONMINOR 99
-#define OOQPVERSIONPATCHLEVEL 26
+#define OOQPVERSIONPATCHLEVEL 27
 
-#define OOQPVERSIONDATE "November 1, 2014"
+#define OOQPVERSIONDATE "October 2, 2016"
 
 /* Define OOQPVERSIONEXACT to indicate a build that should be officially
    tagged by the version number -- others are development or patched builds */
