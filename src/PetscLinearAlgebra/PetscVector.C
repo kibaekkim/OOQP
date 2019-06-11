@@ -62,7 +62,7 @@ PetscVector::~PetscVector()
 {
   int ierr;
   if( !preserveVec ) {
-    ierr = VecDestroy( pv ); assert( ierr  == 0);
+    ierr = VecDestroy( &pv ); assert( ierr  == 0);
   }
   PetscVector::instances--;
 }
@@ -123,7 +123,7 @@ void PetscVector::randomize( double alpha, double beta, double * /* ix */ )
   ierr = PetscRandomSetInterval(rctx, alpha, beta ); assert(ierr == 0);
   ierr = VecSetRandom(pv, rctx); assert(ierr == 0);
 
-  ierr = PetscRandomDestroy(rctx); assert(ierr == 0);
+  ierr = PetscRandomDestroy(&rctx); assert(ierr == 0);
 }
 
 void PetscVector::copyIntoArray( double v[] ) const
@@ -565,14 +565,14 @@ void PetscVector::writefSomeToStream( ostream& out,
     }
     ierr = VecRestoreArray( pselect, &dselect ); assert( ierr == 0 );
 
-    ierr = VecDestroy( pselect ); assert(ierr == 0);
+    ierr = VecDestroy( &pselect ); assert(ierr == 0);
   }
 
   ierr = VecRestoreArray( pvalues, &values ); assert( ierr == 0 );
 
-  ierr = VecScatterDestroy(ctx); assert( ierr  == 0);
-  ierr = ISDestroy( is );  assert(ierr == 0);
-  ierr = VecDestroy( pvalues ); assert(ierr == 0);
+  ierr = VecScatterDestroy(&ctx); assert( ierr  == 0);
+  ierr = ISDestroy( &is );  assert(ierr == 0);
+  ierr = VecDestroy( &pvalues ); assert(ierr == 0);
 
 }
 

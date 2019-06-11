@@ -61,8 +61,7 @@ PetscIterativeSolver::PetscIterativeSolver( PetscSpSymMatrix * Mat,
      Set operators. Here the matrix that defines the linear system
      also serves as the preconditioning matrix.
   */
-  ierr = KSPSetOperators(mKsp, mStorage->M, mStorage->M,
-			  DIFFERENT_NONZERO_PATTERN); assert(ierr == 0);
+  ierr = KSPSetOperators(mKsp, mStorage->M, mStorage->M); assert(ierr == 0);
 
   /* 
      Set linear solver defaults for this problem (optional).
@@ -97,8 +96,7 @@ void PetscIterativeSolver::matrixChanged()
 {
   int ierr;
 
-  ierr = KSPSetOperators(mKsp, mStorage->M, mStorage->M,
-			 SAME_NONZERO_PATTERN); assert(ierr == 0);
+  ierr = KSPSetOperators(mKsp, mStorage->M, mStorage->M); assert(ierr == 0);
 }
 
 void PetscIterativeSolver::solve( OoqpVector& v_in )
@@ -133,6 +131,6 @@ PetscIterativeSolver::~PetscIterativeSolver()
   int ierr;
 
   if( deleteKSP ) { // We made it, we own it.
-    ierr = KSPDestroy( mKsp ); assert( ierr  == 0);
+    ierr = KSPDestroy( &mKsp ); assert( ierr  == 0);
   }
 }
