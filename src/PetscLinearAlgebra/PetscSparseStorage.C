@@ -270,7 +270,7 @@ PetscSparseStorage::~PetscSparseStorage()
   int ierr;
 
   if( !preserveMat ) {
-    ierr = MatDestroy( &M ); assert( ierr  == 0);
+    ierr = MatDestroy( M ); assert( ierr  == 0);
   }
 }
 
